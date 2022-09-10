@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>UI渲染</title>
+    <script src="template-web.js"></script>
+    <script src="jquery.js"></script>
+</head>
+
+<body>
+    <div id="" title></div>
+    <div>姓名: <sapn id="name"></sapn>
+    </div>
+    <div>年龄: <sapn id="age"></sapn>
+    </div>
+    <div>会员: <sapn id="isVIP"></sapn>
+    </div>
+    <div>注册时间: <sapn id="regTime"></sapn>
+    </div>
+    <div>
+        <ul id="hobby">
+            <li>
+                爱好
+            </li>
+
+        </ul>
+    </div>
+    <script>
+        var data = {
+            title: "<h3>用户信息</h3>",
+            name: 'zs',
+            isVIP: true,
+            regTime: new Date(),
+            hobby: ['吃饭', '睡觉', '打豆豆']
+        }
+        $(function () {
+            $('#name').html(data.name);
+            $('#isVIP').html(data.isVIP);
+            $('#age').html(data.age);
+            $('#title').html(data.title);
+            $('#regTime').html(data.regTime);
+
+            var rows = [];
+            $.each(data.hobby, function (i, item) {
+                rows.push('<li>' + item + '</li>')
+            })
+            $('#hobby').html(rows.join(''));
+        })
+    </script>
+    <!-- <div id="container">你好！</div>
+    <script type="text/html" id="tpl-user">
+        <h1>{{name}} ------  {{age}}</h1>
+    </script>
+    <script>
+        import { template } from "./template-web";
+
+        let data = { name: "Lin", age: 20 };
+        let htmlStr = template('tpl-user', data);
+        console.log(htmlStr);
+
+        $('#container').html(htmlStr);
+    </script> -->
+</body>
+
+</html>

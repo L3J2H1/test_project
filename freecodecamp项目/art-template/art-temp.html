@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./template-web.js"></script>
+    <script src="./jquery.js"></script>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script type="text/html" id="tpl-user">
+        <h1>{{name}}-----------{{age}}</h1>
+        {{each hobby}}
+        <li>索引：{{$index}},循环项：{{$value}}</li>
+        {{/each}}
+        <h3>{{regTime | dateFormat}}</h3>
+    </script>
+
+    <script>
+        template.defaults.imports.dateFormat = function (date) {
+            console.log(date);
+            let y = date.getFullYear();
+            let m = date.getMonth() + 1;
+            let d = date.getDate();
+            return y + "-" + m + '-' + d;
+        }
+        var data = {
+            name: 'zs',
+            age: 25,
+            hobby: ['吃饭', '睡觉', '打游戏'],
+            regTime: new Date()
+
+        }
+        var htmlStr = template('tpl-user', data);
+        console.log(htmlStr);
+        $('#container').html(htmlStr);
+    </script>
+
+</body>
+
+</html>
